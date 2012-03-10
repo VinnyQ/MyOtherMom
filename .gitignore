@@ -1,0 +1,28 @@
+#IDEA Stuff          #
+######################
+*.iml
+*.ipr
+*.iws
+.idea/*
+
+#Maven Stuff          #
+######################
+*/target/*
+/target/*
+
+# OS generated files #
+######################
+.DS_Store*
+
+# Other files #
+###############
+*.log
+
+# Eclipse stuff files #
+###############
+*.project
+*.classpath
+*.settings
+*/bin/*
+/bin/*
+
