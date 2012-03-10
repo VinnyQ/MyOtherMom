@@ -10,6 +10,8 @@ import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.*;
+import net.zypr.api.API;
+import net.zypr.api.vo.WeatherCurrentVO;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,6 +41,8 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
     Button speakButton;
 
     EditText alarm_time;
+    
+    private Button weatherButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,33 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
         //setup voice rec button
         Button speakButton = (Button) findViewById(R.id.speakButton);
         wordsList = (ListView) findViewById(R.id.list);
+        
+        //setup the weather button
+        weatherButton = (Button)findViewById(R.id.weatherButton);
+        weatherButton.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+               System.setProperty("net.zypr.api.key", "7f1b439cf0749751ca7c9fa8008d267d");
+
+                try{
+                   API.getInstance().getAuth().login("venkynary@gmail.com", "zypr2012");
+
+                    WeatherCurrentVO weather = API.getInstance().getWeather().current("austin,tx");
+                   Long currentTemperature = weather.getCurrentTemperature();
+                  String description = weather.getDescription();
+                    Toast.makeText(MAIN.this, "Saying: Weather report", Toast.LENGTH_LONG).show();
+            tts.speak(description, TextToSpeech.QUEUE_ADD, null);
+
+                    Toast.makeText(MAIN.this, "Saying: TEMPERATURE", Toast.LENGTH_LONG).show();
+                    tts.speak(currentTemperature.toString() + "Degrees", TextToSpeech.QUEUE_ADD, null);
+
+                    API.getInstance().getAuth().logout();
+                   }catch(Exception exception){
+                    System.err.println(exception);
+                    }
+                }
+
+            });
 
         // Disable button if no recognition service is present
         PackageManager pm = getPackageManager();
@@ -187,6 +218,8 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
             }
         });
     }
+
+
 
     class CountDownRunner implements Runnable{
         // @Override

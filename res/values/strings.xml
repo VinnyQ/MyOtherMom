@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My Other Mom</string>
-    <string name="toggle_sound">Toggle</string>
+    <string name="toggle_sound">Alarm</string>
 </resources>

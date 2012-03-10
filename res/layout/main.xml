@@ -6,12 +6,6 @@
     android:layout_height="fill_parent"
     >
 
-    <EditText android:id="@+id/alarm_time"
-        android:text=""
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-    />
     
 <Button android:id="@+id/toggleButton"
         android:layout_height="wrap_content"
@@ -20,11 +14,17 @@
         android:onClick="selfDestruct" />
 
     <EditText android:id="@+id/lbltime"
+        android:
         android:text=""
-        android:layout_width="fill_parent"
+        android:layout_width="120px"
         android:layout_height="wrap_content"
     />
 
+    <Button android:id="@+id/weatherButton"
+            android:layout_width="120px"
+            android:onClick="speakButtonClicked"
+            android:layout_height="120px"
+            android:text="Weather" />
 
     <Button android:id="@+id/speakButton"
             android:layout_width="fill_parent"
@@ -36,5 +36,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1" />
+
+
 
 </LinearLayout>
