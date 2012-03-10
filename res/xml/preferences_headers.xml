@@ -13,15 +13,8 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-
-    <!-- The name of the application. -->
-    <string name="app_name">Example TTS Engine</string>
-    <!-- The heading of the first (and only) preference fragment -->
-    <string name="general_settings">General settings</string>
-
-    <string name="whisper_title">Whisper utterances</string>
-    <string name="whisper_summary">Say stuff really softly, only the keenest
-      eared robots can understand.</string>
-
-</resources>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+    <header android:fragment="com.example.android.ttsengine.GeneralSettingsFragment"
+        android:title="@string/general_settings"
+    />
+</preference-headers>
