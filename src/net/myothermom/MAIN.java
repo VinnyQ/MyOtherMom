@@ -29,8 +29,8 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.main);
 
-            EditText inputText = (EditText) findViewById(R.id.input_text);
-            Button speakButton = (Button) findViewById(R.id.speak_button);
+            final EditText inputText = (EditText) findViewById(R.id.input_text);
+            final Button speakButton = (Button) findViewById(R.id.speak_button);
 
             speakButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -43,25 +43,26 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
                 }
             });
 
-            Intent checkIntent = new Intent();
-            checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-            startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
-
             final MediaPlayer mp = MediaPlayer.create(this, R.raw.buzzerloud);
             mp.setLooping(true);
             final Button toggleButton = (Button) findViewById(R.id.toggleButton);
 
-             button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                isOn = !isOn;
+            toggleButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    isOn = !isOn;
 
-                if (isOn) {
-                    mp.start();
-                } else {
-                    mp.pause();
+                    if (isOn) {
+                        mp.start();
+                    } else {
+                        mp.pause();
+                    }
                 }
-            }
-        });
+            });
+
+            Intent checkIntent = new Intent();
+            checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+            startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
+        };
 
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             if (requestCode == MY_DATA_CHECK_CODE) {

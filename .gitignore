@@ -4,6 +4,8 @@
 *.ipr
 *.iws
 .idea/*
+*.class
+out/*
 
 #Maven Stuff          #
 ######################
