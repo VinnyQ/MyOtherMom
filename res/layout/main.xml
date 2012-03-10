@@ -1,42 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
 
-    
-<Button android:id="@+id/toggleButton"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:text="@string/toggle_sound"
-        android:onClick="selfDestruct" />
+
+    <Button android:id="@+id/toggleButton"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/toggle_sound"
+            android:onClick="selfDestruct"/>
 
     <EditText android:id="@+id/lbltime"
-        android:
-        android:text=""
-        android:layout_width="120px"
-        android:layout_height="wrap_content"
-    />
+              android:text=""
+              android:layout_width="120px"
+              android:layout_gravity="center_horizontal"
+              android:layout_height="wrap_content"
+            />
 
-    <Button android:id="@+id/weatherButton"
-            android:layout_width="120px"
-            android:onClick="speakButtonClicked"
-            android:layout_height="120px"
-            android:text="Weather" />
+
+    <TableRow android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
+        <Button android:id="@+id/weatherButton"
+                android:layout_width="120px"
+                android:onClick="speakButtonClicked"
+                android:layout_height="80px"
+                android:layout_gravity="center_horizontal"
+                android:text="Weather"/>
+
+        <Button android:id="@+id/calendarButton"
+                android:layout_width="120px"
+                android:onClick="speakButtonClicked"
+                android:layout_height="80px"
+                android:layout_gravity="center_horizontal"
+                android:text="Calendar"/>
+
+        <Button android:id="@+id/loveButton"
+                android:layout_width="120px"
+                android:onClick="loveButtonClicked"
+                android:layout_height="80px"
+                android:layout_gravity="center_horizontal"
+                android:text="Mom says"/>
+
+    </TableRow>
 
     <Button android:id="@+id/speakButton"
             android:layout_width="fill_parent"
             android:onClick="speakButtonClicked"
-            android:layout_height="300px"
-            android:text="Reset Alarm" />
+            android:layout_height="200px"
+            android:text="Reset Alarm"/>
 
     <ListView android:id="@+id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1" />
-
+              android:layout_width="fill_parent"
+              android:layout_height="0dip"
+              android:layout_weight="1"/>
 
 
 </LinearLayout>

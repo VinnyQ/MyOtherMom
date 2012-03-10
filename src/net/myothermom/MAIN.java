@@ -43,6 +43,8 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
     EditText alarm_time;
     
     private Button weatherButton;
+    private Button calendarButton;
+    private Button loveButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,7 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
 
                     Toast.makeText(MAIN.this, "Saying: TEMPERATURE", Toast.LENGTH_LONG).show();
                     tts.speak(currentTemperature.toString() + "Degrees", TextToSpeech.QUEUE_ADD, null);
+                    tts.speak("It is a bit chilly in Austin, you should wear a jacket", TextToSpeech.QUEUE_ADD, null);
 
                     API.getInstance().getAuth().logout();
                    }catch(Exception exception){
@@ -105,6 +108,23 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
 
             });
 
+        calendarButton = (Button) findViewById(R.id.calendarButton);
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tts.speak("You have a meeting at 10:30am.  Get a move on", TextToSpeech.QUEUE_ADD, null);
+            }
+        });
+        
+        loveButton = (Button) findViewById(R.id.loveButton);
+        loveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tts.speak("I am very proud of you", TextToSpeech.QUEUE_ADD, null);
+            }
+        });
+
+        
         // Disable button if no recognition service is present
         PackageManager pm = getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(
