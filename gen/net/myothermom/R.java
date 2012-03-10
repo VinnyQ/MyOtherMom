@@ -16,9 +16,11 @@ public final class R {
         public static final int mom=0x7f020002;
     }
     public static final class id {
-        public static final int input_text=0x7f060000;
-        public static final int speak_button=0x7f060001;
-        public static final int toggleButton=0x7f060002;
+        public static final int alarm_time=0x7f060000;
+        public static final int lbltime=0x7f060002;
+        public static final int list=0x7f060004;
+        public static final int speakButton=0x7f060003;
+        public static final int toggleButton=0x7f060001;
     }
     public static final class layout {
         public static final int main=0x7f030000;

@@ -5,23 +5,36 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+
+    <EditText android:id="@+id/alarm_time"
+        android:text=""
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+    />
     
-<EditText android:id="@+id/input_text" 
-	android:text=""
-	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content" 
-/>
-
-<Button android:id="@+id/speak_button" 
-	android:text="Speak to me"
-	android:layout_width="wrap_content" 
-	android:layout_height="wrap_content" 
-/>
-
 <Button android:id="@+id/toggleButton"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:text="@string/toggle_sound"
         android:onClick="selfDestruct" />
+
+    <EditText android:id="@+id/lbltime"
+        android:text=""
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    />
+
+
+    <Button android:id="@+id/speakButton"
+            android:layout_width="fill_parent"
+            android:onClick="speakButtonClicked"
+            android:layout_height="wrap_content"
+            android:text="Click Me!" />
+
+    <ListView android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1" />
 
 </LinearLayout>
