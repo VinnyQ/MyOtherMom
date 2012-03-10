@@ -29,8 +29,8 @@
     <Button android:id="@+id/speakButton"
             android:layout_width="fill_parent"
             android:onClick="speakButtonClicked"
-            android:layout_height="wrap_content"
-            android:text="Click Me!" />
+            android:layout_height="300px"
+            android:text="Reset Alarm" />
 
     <ListView android:id="@+id/list"
             android:layout_width="fill_parent"

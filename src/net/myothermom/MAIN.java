@@ -11,8 +11,6 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +24,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class MAIN extends Activity implements TextToSpeech.OnInitListener {
+    private static final String USERNAME = "Joshua";
     private int MY_DATA_CHECK_CODE = 0;
     private static final int REQUEST_CODE = 1234;
     private ListView wordsList;
@@ -47,19 +46,10 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        //set initial alarm_time
-        alarm_time = (EditText) findViewById(R.id.alarm_time);
-        calendar = Calendar.getInstance();
-        Date startDate = calendar.getTime();
-        calendar.add(Calendar.MINUTE, 10);
-
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        String formattedTime = df.format(startDate);
-        alarm_time.setText(formattedTime);
 
         //create and set toggle button and buzzer
         mp = MediaPlayer.create(this, R.raw.buzzerloud);
-        mp.setVolume(0.65f, 0.65f);
+        mp.setVolume(0.60f, 0.60f);
         mp.setLooping(true);
         final Button toggleButton = (Button) findViewById(R.id.toggleButton);
         toggleButton.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +95,8 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
      */
     public void speakButtonClicked(View v)
     {
+        isOn = false;
+        mp.pause();
         startVoiceRecognitionActivity();
     }
 
@@ -141,6 +133,23 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
                     RecognizerIntent.EXTRA_RESULTS);
             wordsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                     matches));
+
+            boolean hasMatch = false;
+            for (String word : matches) {
+                if (word.contains("father") && word.contains("sunflower")) {
+                    hasMatch = true;
+                    break;
+                }
+            }
+            
+            if (hasMatch) {
+                tts.speak("Congratulations " + USERNAME + ", you are now awake", TextToSpeech.QUEUE_ADD, null);
+            } else {
+                mp.start();
+            }
+
+            isOn = !hasMatch;
+
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -188,7 +197,7 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
                         Thread.sleep(3000);
 
                         if (isOn) {
-                            tts.speak("Time to wake up.", TextToSpeech.QUEUE_ADD, null);
+                            tts.speak("What did your father teach you", TextToSpeech.QUEUE_ADD, null);
                         }
 
                     } catch (InterruptedException e) {
