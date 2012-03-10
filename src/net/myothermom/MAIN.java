@@ -2,6 +2,7 @@ package net.myothermom;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -20,9 +21,7 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
     private int MY_DATA_CHECK_CODE = 0;
 
         private TextToSpeech tts;
-
-        private EditText inputText;
-        private Button speakButton;
+        private boolean isOn = false;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,8 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.main);
 
-            inputText = (EditText) findViewById(R.id.input_text);
-            speakButton = (Button) findViewById(R.id.speak_button);
+            EditText inputText = (EditText) findViewById(R.id.input_text);
+            Button speakButton = (Button) findViewById(R.id.speak_button);
 
             speakButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -48,7 +47,21 @@ public class MAIN extends Activity implements TextToSpeech.OnInitListener {
             checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
             startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
 
-        }
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.buzzerloud);
+            mp.setLooping(true);
+            final Button toggleButton = (Button) findViewById(R.id.toggleButton);
+
+             button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                isOn = !isOn;
+
+                if (isOn) {
+                    mp.start();
+                } else {
+                    mp.pause();
+                }
+            }
+        });
 
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             if (requestCode == MY_DATA_CHECK_CODE) {
